@@ -2,12 +2,78 @@
 % Please edit documentation in R/msc2time.R
 \name{msc2time.r}
 \alias{msc2time.r}
-\title{Calibrate a BPP A00 analysis using a prior on the rate}
+\title{Time-calibrate a multi-species coalescent phylogeny.}
 \usage{
 msc2time.r(mcmc, u.mean, u.sd, g.mean, g.sd)
 }
+\arguments{
+\item{mcmc}{A data frame containing the MCMC output of a BPP A00 analysis}
+
+\item{u.mean}{Numeric vector of length one with the mean for the per-generation molecular rate calibration}
+
+\item{u.sd}{Numeric vector of length one with the SD for for the per-generation molecular rate calibration}
+
+\item{g.mean}{Numeric vector of length one with the mean for the generation time calibration}
+
+\item{g.sd}{Numeric vector of length one with the SD for the generation time calibration}
+}
+\value{
+A data frame with a posterior sample of population sizes,
+calibrated times, per-generation molecular rate, generation
+time and molecular rate per time unit.
+}
 \description{
-Calibrate a BPP A00 analysis using a prior on the rate
+Calibrate an MCMC sample from a multi-species coalescent
+phylogeny to absolute time using a rate/generation-time calibration.
+}
+\details{
+\code{u.mean} and \code{u.sd}, and \code{g.mean} and \code{g.sd},
+are used to construct gamma density calibrations for the
+per-generation molecular rate and generation time respectively.
+The gamma density with mean \eqn{m} and s.d. \eqn{s} has shape
+\eqn{a = (m / s)^2} and scale \eqn{s = m / s^2}.
+
+The gamma densities are used to obtain random samples of the
+per-generation rate and generation time. From these the molecular
+rate per absolute time unit is calculated, and then used to
+convert the relative times (tau's) to absolute divergence times.
+The relative population sizes (theta's) are converted to effective
+population sizes in number of individuals. See Yoder et al. (2016)
+for an example with mouse lemurs. The BPP A00 analysis is
+described in Yang (2015).
+}
+\examples{
+data(microcebus)
+
+# Calibrate the Microcebus phylogeny to absoluate divergence times
+calmsc <- msc2time.r(mcmc=microcebus$mcmc, u.mean=8.7e-9, u.sd=1.65e-9, g.mean=3.75, g.sd=0.375)
+
+# posterior age of the phylogeny's root (in thousans of years)
+plot(density(calmsc$t_7OLMXRB / 1e3, adj=.1), xlab="Time (Ka)", main="Root age")
+rug(calmsc$t_7OLMXRB / 1e3)
+
+# Posterior of the ancestral effective population at the root (in
+# thousands of individuals)
+plot(density(calmsc$Ne_7OLMXRB / 1e3, adj=.1), xlab="Ne (x 10^3 individuals)", main = "Ne at root")
+rug(calmsc$Ne_7OLMXRB / 1e3)
+
+\dontrun{
+# if you have the coda package installed, you can get the
+# HPD intervals
+coda::HPDinterval(coda::as.mcmc(calmsc))
+}
+
+}
+\references{
+A. D. Yoder, C. R. Campbell, M. B. Blanco, M. dos Reis, J. U.
+Ganzhorn, S. M. Goodman, K. E. Hunnicutt, P. A. Larsen, P. M.
+Kappeler, R. M. Rasoloarison, J. M. Ralison, D. L. Swofford, and
+D. W. Weisrock. (2016) \emph{Geogenetic patterns in mouse lemurs (genus
+Microcebus) reveal the ghosts of Madagascar's forests past.}
+Proc. Nat. Acad. Sci. USA., 113: 8049--8056.
+
+Z. Yang (2015) \emph{The BPP program for species tree estimation
+and species delimitation.} Curr. Zool., 61: 854--865.
 }
 \author{
 Mario dos Reis

@@ -2,7 +2,7 @@
 % Please edit documentation in R/msc2time.R
 \name{msc2time.t}
 \alias{msc2time.t}
-\title{Calibrate a BPP A00 analysis}
+\title{Time-calibrate a multi-species phylogeny}
 \usage{
 msc2time.t(mcmc, node.name, bounds)
 }
@@ -14,17 +14,20 @@ msc2time.t(mcmc, node.name, bounds)
 \item{bounds}{A numeric vector of length two with age bounds for the calibration}
 }
 \value{
-A data frame with the calibrated times and molecular rate.
+A data frame with a posterior sample of the calibrated times and
+molecular rate.
 }
 \description{
-Calibrate a multi-species coalescent phylogeny to
-absolute time using a fossil calibration.
+Calibrate an MCMC sample from a multi-species coalescent
+phylogeny to absolute time using a fossil calibration.
 }
 \details{
 The function will obtain a sample of times from a uniform distribution
-delimited by `bounds`. The sampled times are then used to
+delimited by \code{bounds}. The sampled times are then used to
 calculate the molecular rate, and then re-scale the relative
-times (tau's) for the other nodes in `mcmc`.
+times (tau's) for the other nodes in \code{mcmc}. See Angelis and
+dos Reis (2015) for details. For the BPP A00 analysis see Yang
+(2015).
 }
 \examples{
 data(hominids)
@@ -33,12 +36,12 @@ data(hominids)
 # between 6.5 to 10 Ma for the human-chimp divergence.
 calmsc <- msc2time.t(mcmc=hominids$mcmc, node="7humanchimp", bounds=c(6.5, 10))
 
-# posterior age of human-chimp (this is the calibration)
-plot(density(calmsc$t_7humanchimp, adj=.1), xlab="Time (Ma)")
+# posterior age of human-chimp (this is the same as the calibration)
+plot(density(calmsc$t_7humanchimp, adj=.1), xlab="Time (Ma)", main="Human-chimp age")
 rug(calmsc$t_7humanchimp)
 
 # posterior age of human-goriall (root of the tree)
-plot(density(calmsc$t_5humanchimpgorillaorang, adj=.1), xlab="Time (Ma)")
+plot(density(calmsc$t_5humanchimpgorillaorang, adj=.1), xlab="Time (Ma)", main="Root age")
 rug(calmsc$t_5humanchimpgorillaorang)
 
 \dontrun{
@@ -47,6 +50,14 @@ rug(calmsc$t_5humanchimpgorillaorang)
 coda::HPDinterval(coda::as.mcmc(calmsc))
 }
 
+}
+\references{
+K. Angelis and M. dos Reis (2015) \emph{The impact of ancestral
+population size and incomplete lineage sorting on Bayesian
+estimation of species divergence times.} Curr. Zool., 61: 874--885.
+
+Z. Yang (2015) \emph{The BPP program for species tree estimation
+and species delimitation.} Curr. Zool., 61: 854--865.
 }
 \author{
 Mario dos Reis
