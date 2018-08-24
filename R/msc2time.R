@@ -27,6 +27,9 @@
 #' Z. Yang (2015) \emph{The BPP program for species tree estimation
 #' and species delimitation.} Curr. Zool., 61: 854--865.
 #'
+#' @author
+#' Mario dos Reis
+#'
 #' @examples
 #' data(hominids)
 #'
@@ -55,10 +58,12 @@ msc2time.t <- function(mcmc, node.name, bounds) {
   time.name <- paste("tau_", node.name, sep="")
   i <- match(time.name, names(mcmc))
   n <- length(mcmc[,i])  # length of the MCMC sample
+
   ti <- grep("tau_", names(mcmc)) # find the unscaled times (tau's) in data frame
   tr <- runif(n, min=bounds[1], max=bounds[2]) # obtain randomly sampled times from calibration
   rate <- mcmc[,i] / tr  # calculate substitution rate
   tmcmc <- mcmc[,ti] / rate # calibrate times
+
   # rename the calibrated times
   new.names <- sub("^tau", "t", names(tmcmc))
   names(tmcmc) <- new.names
@@ -158,6 +163,10 @@ msc2time.r <- function(mcmc, u.mean, u.sd, g.mean, g.sd) {
   new.names <- sub("^tau", "t", names(tmcmc))
   new.names <- sub("^theta", "Ne", new.names)
   names(tmcmc) <- new.names
+
+  # remove genration and lnL columns
+  ii <- which(names(tmcmc) == "lnL" | names(tmcmc) == "Gen")
+  tmcmc <- tmcmc[,-ii]
 
   return(cbind(tmcmc, u, g, rate))
 }
