@@ -145,10 +145,11 @@ stepping.stones <- function(mcmcf="mcmc.txt", betaf="beta.txt") {
   for (i in 1:n) {
     ess[i] <- coda::effectiveSize(Ls[[i]])
     vzr[i] <- var(Ls[[i]]) / ess[i]
+    # the delta approximation does not work well if vzr/zr^2 > 0.1:
     if (vzr[i] / zr[i]^2 > 0.1)
       warning ("unreliable se: var(r_k)/r_k^2 = ", vzr[i] / zr[i]^2, " for b = ", b[i])
   }
-  vmlnl <- sum(vzr / zr^2)  # the delta approximation does not work well if vzr/zr^2 > 0.1
+  vmlnl <- sum(vzr / zr^2)
 
   lnml <- sum(log(zr) + C)
   return ( list(logml=lnml, se=sqrt(vmlnl), mean.logl=mlnl, b=b[1:n]) )
