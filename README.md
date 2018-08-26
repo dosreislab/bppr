@@ -39,3 +39,5 @@ The random sampling procedure using the per-generation rate and generation time 
 Gaussian quadrature for Bayes factors in BPP is described in:
 
 * Rannala, B., and Z. Yang. 2017. [Efficient Bayesian species tree inference under the multispecies coalescent](https://doi.org/10.1093/sysbio/syw119). Systematic Biology, 66: 823-842.
+
+Other relevant citations are given in the helpfiles of the package.
