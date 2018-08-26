@@ -1,0 +1,4 @@
+1 human
+2 chimp
+3 gorilla
+4 orang
