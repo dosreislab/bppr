@@ -90,7 +90,7 @@ msc2time.t <- function(mcmc, node.name, calf, ...) {
 #' are used to construct gamma density calibrations for the
 #' per-generation molecular rate and generation time respectively.
 #' The gamma density with mean \eqn{m} and s.d. \eqn{s} has shape
-#' \eqn{a = (m / s)^2} and scale \eqn{s = m / s^2}.
+#' \eqn{a = (m / s)^2} and rate \eqn{b = m / s^2}.
 #'
 #' The gamma densities are used to obtain random samples of the
 #' per-generation rate and generation time. From these the molecular
