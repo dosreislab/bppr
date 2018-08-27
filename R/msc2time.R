@@ -5,15 +5,20 @@
 #'
 #' @param mcmc A data frame containing the MCMC output of a BPP A00 analysis
 #' @param node.name A character vector of length one with the name of the node to which the calibration will be applied
-#' @param bounds A numeric vector of length two with age bounds for the calibration
+#' @param calf A calibration function to generate random numbers
+#' @param ... Further parameters passed to \code{calf}
 #'
 #' @details
-#' The function will obtain a sample of times from a uniform distribution
-#' delimited by \code{bounds}. The sampled times are then used to
+#' The function will obtain a sample of times from the random
+#' distribution in \code{calf}. Suitable choices for \code{calf} are
+#' \code{runif} and \code{rgamma}. The sampled times are then used to
 #' calculate the molecular rate, and then re-scale the relative
 #' times (tau's) for the other nodes in \code{mcmc}. See Angelis and
 #' dos Reis (2015) for details. For the BPP A00 analysis see Yang
 #' (2015).
+#'
+#' @seealso
+#' \code{\link{msc2time.r}} for calibrating using a rate prior.
 #'
 #' @return
 #' A data frame with a posterior sample of the calibrated times and
@@ -27,15 +32,14 @@
 #' Z. Yang (2015) \emph{The BPP program for species tree estimation
 #' and species delimitation.} Curr. Zool., 61: 854--865.
 #'
-#' @author
-#' Mario dos Reis
+#' @author Mario dos Reis
 #'
 #' @examples
 #' data(hominids)
 #'
 #' # Calibrate the hominid phylogeny with a fossil calibration of
 #' # between 6.5 to 10 Ma for the human-chimp divergence.
-#' calmsc <- msc2time.t(mcmc=hominids$mcmc, node="7humanchimp", bounds=c(6.5, 10))
+#' calmsc <- msc2time.t(mcmc=hominids$mcmc, node="7humanchimp", calf=runif, min=6.5, max=10)
 #'
 #' # posterior age of human-chimp (this is the same as the calibration)
 #' plot(density(calmsc$t_7humanchimp, adj=.1), xlab="Time (Ma)", main="Human-chimp age")
@@ -51,16 +55,15 @@
 #' coda::HPDinterval(coda::as.mcmc(calmsc))
 #' }
 #'
-#' @author Mario dos Reis
 #'
 #' @export
-msc2time.t <- function(mcmc, node.name, bounds) {
+msc2time.t <- function(mcmc, node.name, calf, ...) {
   time.name <- paste("tau_", node.name, sep="")
   i <- match(time.name, names(mcmc))
   n <- length(mcmc[,i])  # length of the MCMC sample
 
   ti <- grep("tau_", names(mcmc)) # find the unscaled times (tau's) in data frame
-  tr <- runif(n, min=bounds[1], max=bounds[2]) # obtain randomly sampled times from calibration
+  tr <- calf(n, ...) # obtain randomly sampled times from calibration
   rate <- mcmc[,i] / tr  # calculate substitution rate
   tmcmc <- mcmc[,ti] / rate # calibrate times
 
@@ -97,6 +100,9 @@ msc2time.t <- function(mcmc, node.name, bounds) {
 #' population sizes in number of individuals. See Yoder et al. (2016)
 #' for an example with mouse lemurs. The BPP A00 analysis is
 #' described in Yang (2015).
+#'
+#' @seealso
+#' \code{\link{msc2time.t}} for calibrating using a time prior.
 #'
 #' @references
 #' A. D. Yoder, C. R. Campbell, M. B. Blanco, M. dos Reis, J. U.

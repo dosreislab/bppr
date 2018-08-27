@@ -75,6 +75,9 @@ Proc. Nat. Acad. Sci. USA., 113: 8049--8056.
 Z. Yang (2015) \emph{The BPP program for species tree estimation
 and species delimitation.} Curr. Zool., 61: 854--865.
 }
+\seealso{
+\code{\link{msc2time.t}} for calibrating using a time prior.
+}
 \author{
 Mario dos Reis
 }

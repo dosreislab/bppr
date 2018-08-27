@@ -4,14 +4,16 @@
 \alias{msc2time.t}
 \title{Time-calibrate a multi-species phylogeny}
 \usage{
-msc2time.t(mcmc, node.name, bounds)
+msc2time.t(mcmc, node.name, calf, ...)
 }
 \arguments{
 \item{mcmc}{A data frame containing the MCMC output of a BPP A00 analysis}
 
 \item{node.name}{A character vector of length one with the name of the node to which the calibration will be applied}
 
-\item{bounds}{A numeric vector of length two with age bounds for the calibration}
+\item{calf}{A calibration function to generate random numbers}
+
+\item{...}{Further parameters passed to \code{calf}}
 }
 \value{
 A data frame with a posterior sample of the calibrated times and
@@ -22,8 +24,9 @@ Calibrate an MCMC sample from a multi-species coalescent
 phylogeny to absolute time using a fossil calibration.
 }
 \details{
-The function will obtain a sample of times from a uniform distribution
-delimited by \code{bounds}. The sampled times are then used to
+The function will obtain a sample of times from the random
+distribution in \code{calf}. Suitable choices for \code{calf} are
+\code{runif} and \code{rgamma}. The sampled times are then used to
 calculate the molecular rate, and then re-scale the relative
 times (tau's) for the other nodes in \code{mcmc}. See Angelis and
 dos Reis (2015) for details. For the BPP A00 analysis see Yang
@@ -34,7 +37,7 @@ data(hominids)
 
 # Calibrate the hominid phylogeny with a fossil calibration of
 # between 6.5 to 10 Ma for the human-chimp divergence.
-calmsc <- msc2time.t(mcmc=hominids$mcmc, node="7humanchimp", bounds=c(6.5, 10))
+calmsc <- msc2time.t(mcmc=hominids$mcmc, node="7humanchimp", calf=runif, min=6.5, max=10)
 
 # posterior age of human-chimp (this is the same as the calibration)
 plot(density(calmsc$t_7humanchimp, adj=.1), xlab="Time (Ma)", main="Human-chimp age")
@@ -50,6 +53,7 @@ rug(calmsc$t_5humanchimpgorillaorang)
 coda::HPDinterval(coda::as.mcmc(calmsc))
 }
 
+
 }
 \references{
 K. Angelis and M. dos Reis (2015) \emph{The impact of ancestral
@@ -59,8 +63,9 @@ estimation of species divergence times.} Curr. Zool., 61: 874--885.
 Z. Yang (2015) \emph{The BPP program for species tree estimation
 and species delimitation.} Curr. Zool., 61: 854--865.
 }
+\seealso{
+\code{\link{msc2time.r}} for calibrating using a rate prior.
+}
 \author{
-Mario dos Reis
-
 Mario dos Reis
 }
