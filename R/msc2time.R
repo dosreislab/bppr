@@ -70,10 +70,12 @@
 #'
 #' # Calibrate the hominid phylogeny with a fossil calibration of
 #' # between 6.5 to 10 Ma for the human-chimp divergence.
-#' calmsc <- msc2time.t(mcmc=hominids$mcmc, node="7humanchimp", calf=runif, min=6.5, max=10)
+#' calmsc <- msc2time.t(mcmc=hominids$mcmc, node="7humanchimp", calf=runif,
+#'   min=6.5, max=10)
 #'
 #' # posterior age of human-chimp (this is the same as the calibration)
-#' plot(density(calmsc$t_7humanchimp, adj=.1), xlab="Time (Ma)", main="Human-chimp age")
+#' plot(density(calmsc$t_7humanchimp, adj=.1), xlab="Time (Ma)",
+#'   main="Human-chimp age")
 #' rug(calmsc$t_7humanchimp)
 #'
 #' \dontrun{
@@ -86,17 +88,24 @@
 #'
 #' # Calibrate the Microcebus phylogeny to absoluate divergence times using a
 #' # prior on the per-generation rate and generation time
-#' calmsc <- msc2time.r(mcmc=microcebus$mcmc, u.mean=8.7e-9, u.sd=1.65e-9, g.mean=3.75, g.sd=0.375)
+#' calmsc <- msc2time.r(mcmc=microcebus$mcmc, u.mean=8.7e-9, u.sd=1.65e-9,
+#'   g.mean=3.75, g.sd=0.375)
 #'
 #' # posterior age of the phylogeny's root (in thousans of years)
-#' plot(density(calmsc$t_7OLMXRB / 1e3, adj=.1), xlab="Time (Ka)", main="Root age (Microcebus)")
+#' plot(density(calmsc$t_7OLMXRB / 1e3, adj=.1), xlab="Time (Ka)",
+#'   main="Root age (Microcebus)")
 #' rug(calmsc$t_7OLMXRB / 1e3)
 #'
 #' # Posterior of the ancestral effective population at the root (in
 #' # thousands of individuals)
-#' plot(density(calmsc$Ne_7OLMXRB / 1e3, adj=.1), xlab="Ne (x 10^3 individuals)", main = "Ne at root (Microcebus)")
+#' plot(density(calmsc$Ne_7OLMXRB / 1e3, adj=.1),
+#'   xlab="Ne (x 10^3 individuals)", main = "Ne at root (Microcebus)")
 #' rug(calmsc$Ne_7OLMXRB / 1e3)
 #'
+#' @name msc2time
+NULL
+
+#' @rdname msc2time
 #' @export
 msc2time.t <- function(mcmc, node.name, calf, ...) {
   time.name <- paste("tau_", node.name, sep="")
@@ -115,7 +124,7 @@ msc2time.t <- function(mcmc, node.name, calf, ...) {
   return (cbind(tmcmc, rate)) # return a dataframe with the calibrated times
 }
 
-#' @rdname msc2time.t
+#' @rdname msc2time
 #' @export
 msc2time.r <- function(mcmc, u.mean, u.sd, g.mean, g.sd) {
   n <- length(mcmc[,1])  # length of the MCMC sample
