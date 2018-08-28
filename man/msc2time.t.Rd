@@ -2,35 +2,72 @@
 % Please edit documentation in R/msc2time.R
 \name{msc2time.t}
 \alias{msc2time.t}
+\alias{msc2time.r}
 \title{Time-calibrate a multi-species phylogeny}
 \usage{
 msc2time.t(mcmc, node.name, calf, ...)
+
+msc2time.r(mcmc, u.mean, u.sd, g.mean, g.sd)
 }
 \arguments{
 \item{mcmc}{A data frame containing the MCMC output of a BPP A00 analysis}
 
-\item{node.name}{A character vector of length one with the name of the node to which the calibration will be applied}
+\item{node.name}{A character vector of length one with the name of the node
+to which the calibration will be applied}
 
 \item{calf}{A calibration function to generate random numbers}
 
 \item{...}{Further parameters passed to \code{calf}}
+
+\item{u.mean}{Numeric vector of length one with the mean for the
+per-generation molecular rate calibration}
+
+\item{u.sd}{Numeric vector of length one with the SD for for the
+per-generation molecular rate calibration}
+
+\item{g.mean}{Numeric vector of length one with the mean for the generation
+time calibration}
+
+\item{g.sd}{Numeric vector of length one with the SD for the generation time
+calibration}
 }
 \value{
 A data frame with a posterior sample of the calibrated times and
-molecular rate.
+  molecular rate, and additionally, in the case of \code{msc2time.r}, the
+  population sizes.
 }
 \description{
-Calibrate an MCMC sample from a multi-species coalescent
-phylogeny to absolute time using a fossil calibration.
+Calibrate a BPP A00 MCMC sample from a multi-species coalescent
+  phylogeny to absolute time using a fossil calibration or a prior on the
+  molecular rate.
 }
 \details{
-The function will obtain a sample of times from the random
-distribution in \code{calf}. Suitable choices for \code{calf} are
-\code{runif} and \code{rgamma}. The sampled times are then used to
-calculate the molecular rate, and then re-scale the relative
-times (tau's) for the other nodes in \code{mcmc}. See Angelis and
-dos Reis (2015) for details. For the BPP A00 analysis see Yang
-(2015).
+\code{msc2time.t} will calibarte a BPP A00 analysis to geological
+time using a fossil calibration and \code{msc2time.r} will do the same but
+using a prior on the rate.
+
+\code{msc2time.t} will obtain a sample of times from the random distribution
+in \code{calf}. Suitable choices for \code{calf} are \code{runif} and
+\code{rgamma}. The sampled times are then used to calculate the molecular
+rate, and then re-scale the relative times (tau's) for the other nodes in
+\code{mcmc} to geological time.
+
+\code{u.mean} and \code{u.sd}, and \code{g.mean} and \code{g.sd}, are used to
+construct gamma density calibrations for the per-generation molecular rate
+and generation time respectively. The gamma density with mean \eqn{m} and
+s.d. \eqn{s} has shape \eqn{a = (m / s)^2} and rate \eqn{b = m / s^2}.
+
+In \code{msc2time.r}, the gamma densities are used to obtain random samples
+of the per-generation rate and generation time. From these the molecular rate
+per absolute time unit is calculated, and then used to convert the relative
+times (tau's) to absolute divergence times. The relative population sizes
+(theta's) are converted to effective population sizes in number of
+individuals.
+
+Angelis and dos Reis (2015) give the random sampling procedure used in
+these functions. Yoder et al. (2016) gives an example of calibrating a mouse
+lemur phylogeny using a prior on the rate. The BPP A00 analysis is described
+in Yang (2015).
 }
 \examples{
 data(hominids)
@@ -43,28 +80,41 @@ calmsc <- msc2time.t(mcmc=hominids$mcmc, node="7humanchimp", calf=runif, min=6.5
 plot(density(calmsc$t_7humanchimp, adj=.1), xlab="Time (Ma)", main="Human-chimp age")
 rug(calmsc$t_7humanchimp)
 
-# posterior age of human-goriall (root of the tree)
-plot(density(calmsc$t_5humanchimpgorillaorang, adj=.1), xlab="Time (Ma)", main="Root age")
-rug(calmsc$t_5humanchimpgorillaorang)
-
 \dontrun{
 # if you have the coda package installed, you can get the
 # HPD intervals
 coda::HPDinterval(coda::as.mcmc(calmsc))
 }
 
+data(microcebus)
+
+# Calibrate the Microcebus phylogeny to absoluate divergence times using a
+# prior on the per-generation rate and generation time
+calmsc <- msc2time.r(mcmc=microcebus$mcmc, u.mean=8.7e-9, u.sd=1.65e-9, g.mean=3.75, g.sd=0.375)
+
+# posterior age of the phylogeny's root (in thousans of years)
+plot(density(calmsc$t_7OLMXRB / 1e3, adj=.1), xlab="Time (Ka)", main="Root age (Microcebus)")
+rug(calmsc$t_7OLMXRB / 1e3)
+
+# Posterior of the ancestral effective population at the root (in
+# thousands of individuals)
+plot(density(calmsc$Ne_7OLMXRB / 1e3, adj=.1), xlab="Ne (x 10^3 individuals)", main = "Ne at root (Microcebus)")
+rug(calmsc$Ne_7OLMXRB / 1e3)
 
 }
 \references{
 K. Angelis and M. dos Reis (2015) \emph{The impact of ancestral
-population size and incomplete lineage sorting on Bayesian
-estimation of species divergence times.} Curr. Zool., 61: 874--885.
+population size and incomplete lineage sorting on Bayesian estimation of
+species divergence times.} Curr. Zool., 61: 874--885.
 
-Z. Yang (2015) \emph{The BPP program for species tree estimation
-and species delimitation.} Curr. Zool., 61: 854--865.
-}
-\seealso{
-\code{\link{msc2time.r}} for calibrating using a rate prior.
+Z. Yang (2015) \emph{The BPP program for species tree estimation and species
+delimitation.} Curr. Zool., 61: 854--865.
+
+A. D. Yoder, C. R. Campbell, M. B. Blanco, M. dos Reis, J. U. Ganzhorn, S. M.
+Goodman, K. E. Hunnicutt, P. A. Larsen, P. M. Kappeler, R. M. Rasoloarison,
+J. M. Ralison, D. L. Swofford, and D. W. Weisrock. (2016) \emph{Geogenetic
+patterns in mouse lemurs (genus Microcebus) reveal the ghosts of Madagascar's
+forests past.} Proc. Nat. Acad. Sci. USA., 113: 8049--8056.
 }
 \author{
 Mario dos Reis

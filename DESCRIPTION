@@ -1,7 +1,7 @@
 Package: bppr
 Type: Package
 Title: Helper package for the multi-species coalescent program BPP
-Version: 0.2.0
+Version: 0.2.1
 Author: Mario dos Reis
 Maintainer: Mario dos Reis <mariodosreis@gmail.com>
 Description: Functions to work with the program BPP, for example, functions to calibrate BPP trees to geological time.
