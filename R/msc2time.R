@@ -159,10 +159,3 @@ msc2time.r <- function(mcmc, u.mean, u.sd, g.mean, g.sd) {
   return(cbind(tmcmc, u, g, rate))
 }
 
-# TODO: Add a better description
-#' A BPP A00 MCMC sample for a mouse lemur phylogeny
-"microcebus"
-
-# TODO: Add a better description
-#' A BPP A00 MCMC sample for an hominid phylogeny
-"hominids"
