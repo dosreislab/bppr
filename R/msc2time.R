@@ -1,8 +1,7 @@
 #' Time-calibrate a multi-species phylogeny
 #'
-#' @description Calibrate a BPP A00 MCMC sample from a multi-species coalescent
-#'   phylogeny to absolute time using a fossil calibration or a prior on the
-#'   molecular rate.
+#' Calibrate a BPP A00 MCMC sample from a multi-species coalescent phylogeny to
+#' absolute time using a fossil calibration or a prior on the molecular rate.
 #'
 #' @param mcmc A data frame containing the MCMC output of a BPP A00 analysis
 #' @param node.name A character vector of length one with the name of the node
@@ -19,31 +18,31 @@
 #'   calibration
 #'
 #' @details \code{msc2time.t} will calibarte a BPP A00 analysis to geological
-#' time using a fossil calibration and \code{msc2time.r} will do the same but
-#' using a prior on the rate.
+#'   time using a fossil calibration and \code{msc2time.r} will do the same but
+#'   using a prior on the rate.
 #'
-#' \code{msc2time.t} will obtain a sample of times from the random distribution
-#' in \code{calf}. Suitable choices for \code{calf} are \code{runif} and
-#' \code{rgamma}. The sampled times are then used to calculate the molecular
-#' rate, and then re-scale the relative times (tau's) for the other nodes in
-#' \code{mcmc} to geological time.
+#'   \code{msc2time.t} will obtain a sample of times from the random
+#'   distribution in \code{calf}. Suitable choices for \code{calf} are
+#'   \code{runif}, \code{rgamma}, and \code{rslnorm}. The sampled times are then
+#'   used to calculate the molecular rate, and then re-scale the relative times
+#'   (tau's) for the other nodes in \code{mcmc} to geological time.
 #'
-#' \code{u.mean} and \code{u.sd}, and \code{g.mean} and \code{g.sd}, are used to
-#' construct gamma density calibrations for the per-generation molecular rate
-#' and generation time respectively. The gamma density with mean \eqn{m} and
-#' s.d. \eqn{s} has shape \eqn{a = (m / s)^2} and rate \eqn{b = m / s^2}.
+#'   \code{u.mean} and \code{u.sd}, and \code{g.mean} and \code{g.sd}, are used
+#'   to construct gamma density calibrations for the per-generation molecular
+#'   rate and generation time respectively. The gamma density with mean \eqn{m}
+#'   and s.d. \eqn{s} has shape \eqn{a = (m / s)^2} and rate \eqn{b = m / s^2}.
 #'
-#' In \code{msc2time.r}, the gamma densities are used to obtain random samples
-#' of the per-generation rate and generation time. From these the molecular rate
-#' per absolute time unit is calculated, and then used to convert the relative
-#' times (tau's) to absolute divergence times. The relative population sizes
-#' (theta's) are converted to effective population sizes in number of
-#' individuals.
+#'   In \code{msc2time.r}, the gamma densities are used to obtain random samples
+#'   of the per-generation rate and generation time. From these the molecular
+#'   rate per absolute time unit is calculated, and then used to convert the
+#'   relative times (tau's) to absolute divergence times. The relative
+#'   population sizes (theta's) are converted to effective population sizes in
+#'   number of individuals.
 #'
-#' Angelis and dos Reis (2015) give the random sampling procedure used in
-#' these functions. Yoder et al. (2016) gives an example of calibrating a mouse
-#' lemur phylogeny using a prior on the rate. The BPP A00 analysis is described
-#' in Yang (2015).
+#'   Angelis and dos Reis (2015) give the random sampling procedure used in
+#'   these functions. Yoder et al. (2016) gives an example of calibrating a
+#'   mouse lemur phylogeny using a prior on the rate. The BPP A00 analysis is
+#'   described in Yang (2015).
 #'
 #' @return A data frame with a posterior sample of the calibrated times and
 #'   molecular rate, and additionally, in the case of \code{msc2time.r}, the
@@ -68,7 +67,7 @@
 #' @examples
 #' data(hominids)
 #'
-#' # Calibrate the hominid phylogeny with a fossil calibration of
+#' # Calibrate the hominid phylogeny with a uniform fossil calibration of
 #' # between 6.5 to 10 Ma for the human-chimp divergence.
 #' calmsc <- msc2time.t(mcmc=hominids$mcmc, node="7humanchimp", calf=runif,
 #'   min=6.5, max=10)
