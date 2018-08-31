@@ -10,7 +10,7 @@ The package can calibrate a BPP A00 analysis to absolute divergence times by usi
 
 Bayes factor calculations are useful for species delimitation with very large datasets, in which case the rjMCMC algorithm may be inefficient. Bayes factors with bppr are calculated with the stepping stones algorithm or the Gaussian quadrature (thermodynamic integration) approach of Rannala and Yang (2018). Note that the stepping stones algorithm appears to be much more efficient than the Gaussian quadrature method. I recommend you use bppr and stepping stones instead of BFdriver to calculate Bayes factors with BPP.
 
-A tutorial for the package can be found [here](https://dosreislab.github.io/2018/08/26/bppr.html).
+A tutorial for the package can be found [here](https://dosreislab.github.io/2018/08/31/bppr.html).
 
 ## Installation
 
