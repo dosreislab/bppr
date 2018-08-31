@@ -60,17 +60,17 @@ dslnorm <- function (x, shift, meanlog = 0, sdlog = 1, log = FALSE) {
 #' @rdname ShiftedLognormal
 #' @export
 pslnorm <- function (q, shift, meanlog = 0, sdlog = 1, lower.tail = TRUE, log.p = FALSE) {
-  return( plnorm(q - shift, meanlog = 0, sdlog = 1, lower.tail = TRUE, log.p = FALSE) )
+  return( plnorm(q - shift, meanlog, sdlog, lower.tail, log.p) )
 }
 
 #' @rdname ShiftedLognormal
 #' @export
 qslnorm <- function (p, shift, meanlog = 0, sdlog = 1, lower.tail = TRUE, log.p = FALSE) {
-  return( qlnorm(p, meanlog = 0, sdlog = 1, lower.tail = TRUE, log.p = FALSE) + shift)
+  return( qlnorm(p, meanlog, sdlog, lower.tail, log.p) + shift)
 }
 
 #' @rdname ShiftedLognormal
 #' @export
 rslnorm <- function (n, shift, meanlog = 0, sdlog = 1) {
-  return( rlnorm(n, meanlog = 0, sdlog = 1) + shift )
+  return( rlnorm(n, meanlog, sdlog) + shift )
 }
