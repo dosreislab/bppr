@@ -147,7 +147,7 @@ stepping.stones <- function(mcmcf="mcmc.txt", betaf="beta.txt") {
     vzr[i] <- var(Ls[[i]]) / ess[i]
     # the delta approximation does not work well if vzr/zr^2 > 0.1:
     if (vzr[i] / zr[i]^2 > 0.1)
-      warning ("unreliable se: var(r_k)/r_k^2 = ", vzr[i] / zr[i]^2, " for b = ", b[i])
+      warning ("unreliable se: var(r_k)/r_k^2 = ", vzr[i] / zr[i]^2, " > 0.1, for b = ", b[i])
   }
   vmlnl <- sum(vzr / zr^2)
 

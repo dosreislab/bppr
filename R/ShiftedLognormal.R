@@ -19,10 +19,10 @@
 #'   x]}, otherwise, \eqn{P[X > x]}.
 #'
 #' @details Let \eqn{Y} have a log-normal distribution with parameters \eqn{\mu}
-#'   (\code{meanlog}) and \eqn{\sigma} (\code{sdlog}). Then \eqn{X = Y + s, (s >
-#'   0)} has a shifted log-normal distribution with shift \eqn{s}
-#'   (\code{shift}), mean \eqn{E(X) = exp(μ + 1/2 σ^2) + s} and variance
-#'   \eqn{Var(X) = exp(2*μ + σ^2)*(exp(σ^2) - 1)}.
+#'   (\code{meanlog}) and \eqn{\sigma} (\code{sdlog}). Then \eqn{X = Y + s} has
+#'   a shifted log-normal distribution with shift \eqn{s} (\code{shift}), mean
+#'   \eqn{E(X) = exp(μ + 1/2 σ^2) + s} and variance \eqn{Var(X) = exp(2*μ +
+#'   σ^2)*(exp(σ^2) - 1)}.
 #'
 #'   Note \code{[dpqr]slnorm} are wrappers for the corresponding
 #'   \code{[dpqr]lnorm} functions.
