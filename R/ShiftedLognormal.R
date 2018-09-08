@@ -15,14 +15,14 @@
 #' @param meanlog,sdlog mean and standard deviation of the distribution on the
 #'   log scale with default values of 0 and 1 respectively.
 #' @param log,log.p logical; if TRUE, probabilities p are given as log(p).
-#' @param lower.tail logical; if TRUE (default), probabilities are \eqn{P[X ≤
+#' @param lower.tail logical; if TRUE (default), probabilities are \eqn{P[X \leq
 #'   x]}, otherwise, \eqn{P[X > x]}.
 #'
 #' @details Let \eqn{Y} have a log-normal distribution with parameters \eqn{\mu}
 #'   (\code{meanlog}) and \eqn{\sigma} (\code{sdlog}). Then \eqn{X = Y + s} has
 #'   a shifted log-normal distribution with shift \eqn{s} (\code{shift}), mean
-#'   \eqn{E(X) = exp(μ + 1/2 σ^2) + s} and variance \eqn{Var(X) = exp(2*μ +
-#'   σ^2)*(exp(σ^2) - 1)}.
+#'   \eqn{E(X) = exp(\mu + 1/2 \sigma^2) + s} and variance \eqn{Var(X) =
+#'   exp(2*\mu + \sigma^2)*(exp(\sigma^2) - 1)}.
 #'
 #'   Note \code{[dpqr]slnorm} are wrappers for the corresponding
 #'   \code{[dpqr]lnorm} functions.

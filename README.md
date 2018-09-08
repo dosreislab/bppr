@@ -8,7 +8,7 @@ Currently the package is useful for
 
 The package can calibrate a BPP A00 analysis to absolute divergence times by using either a fossil calibration on a node age, or a prior on the per-generation rate and generation time. In the latter case a posterior sample of the effective population sizes is obtained.
 
-Bayes factor calculations are useful for species delimitation with very large datasets, in which case the rjMCMC algorithm may be inefficient. Bayes factors with bppr are calculated with the stepping stones algorithm or the Gaussian quadrature (thermodynamic integration) approach of Rannala and Yang (2018). Note that the stepping stones algorithm appears to be much more efficient than the Gaussian quadrature method. I recommend you use bppr and stepping stones instead of BFdriver to calculate Bayes factors with BPP.
+Bayes factor calculations are useful for species delimitation with very large datasets, in which case the rjMCMC algorithm may be inefficient. Bayes factors with bppr are calculated with the stepping stones algorithm or the Gaussian quadrature (thermodynamic integration) approach of Rannala and Yang (2018). Note that the stepping stones algorithm appears to be much more efficient than the Gaussian quadrature method.
 
 A tutorial for the package can be found [here](https://dosreislab.github.io/2018/08/31/bppr.html).
 
@@ -19,6 +19,26 @@ If you have the devtools package installed, you can install bppr by typing in R:
 ```R
 devtools::install_github("dosreislab/bppr")
 ```
+
+## Example
+Calibrating the hominid phylogeny to geological time and plotting it:
+
+```R
+data(hominids)
+# Calibrate the hominid phylogeny with a uniform fossil calibration of
+# between 6.5 to 10 Ma for the human-chimp divergence.
+calmsc <- msc2time.t(mcmc=hominids$mcmc, node="7humanchimp", calf=runif,
+                    min=6.5, max=10)
+# convert the time-calibrated MCMC sample to a list of trees
+htts <- mcmc2multiphylo(hominids$tree, calmsc, "t_", thin=0.01)
+htts[[1]]
+
+# The trees are suitable for plotting with the phangorn package
+hcon <- hominids$tree$tip.label
+phangorn::densiTree(htts, col="blue", alpha=0.04, cons=hcon, label.offset=.01)
+```
+
+![](/figs/apes.png)
 
 ## References
 
