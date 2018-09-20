@@ -49,11 +49,13 @@
 #' @export
 mcmc2multiphylo <- function(tree, mcmc, time.name, thin) {
   tts <- list()
-  n <- dim(mcmc)[1] * thin # thin the MCMC sample
+  N <- dim(mcmc)[1]
   ti <- grep(time.name, names(mcmc))
+  ii <- floor(seq(from=1, to=N, length.out = N * thin))
+  n <- length(ii)
 
   for (i in 1:n) {
-    tts[[i]] <- .mcmc2multiphylo.treef(tree, unlist(mcmc[i,ti]))
+    tts[[i]] <- .mcmc2multiphylo.treef(tree, unlist(mcmc[ii[i],ti]))
   }
   class(tts) <- "multiPhylo"
 
@@ -99,29 +101,3 @@ mcmc2multiphylo <- function(tree, mcmc, time.name, thin) {
 
   return(tt)
 }
-
-# RUBBISH - MdR: 8th Sep 2018
-# rm(list=ls())
-# require(bppr)
-# require(ape)
-# data(hominids)
-# #tree <- hominids$tree
-#
-#
-# # hominid ages
-# hominids$mcmc[1,5:7]
-#
-# plot(treef(hominids$tree, unlist(hominids$mcmc[2,5:7])))
-#
-# calmsc <- msc2time.t(mcmc=hominids$mcmc, node="7humanchimp", calf=runif, min=6.5, max=10)
-# tts <- list()
-# n <- 1e3
-# mcmc <- calmsc[seq(from=1, to=2e4, len=n),]
-#
-# for (i in 1:n) {
-#   tts[[i]] <- treef(hominids$tree, unlist(mcmc[i,]))
-# }
-#
-# class(tts) <- "multiPhylo"
-#
-# phangorn::densiTree(tts, col="blue", alpha=sqrt(1/n), label.offset = .01)
