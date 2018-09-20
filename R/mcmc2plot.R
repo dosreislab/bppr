@@ -33,6 +33,16 @@
 #' data(microcebus)
 #' mcmc2densitree(microcebus$tree, microcebus$mcmc, time.name="tau_", thin=0.05,
 #'  alpha=0.01, col="blue")
+#'  title(xlab="Distance (substitutions per site)")
+#'
+#' data(hominids)
+#' # Calibrate the hominid phylogeny with a uniform fossil calibration of
+#' # between 6.5 to 10 Ma for the human-chimp divergence, and plot the
+#' # calibrated sample
+#' calmsc <- msc2time.t(mcmc=hominids$mcmc, node="7humanchimp", calf=runif,
+#'   min=6.5, max=10)
+#' mcmc2densitree(hominids$tree, calmsc, "t_", thin=0.05, alpha=0.01)
+#' title(xlab="Divergence time (Ma)")
 #'
 #' @export
 # FIXME: I'm very slow

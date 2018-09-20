@@ -4,6 +4,10 @@ Important changes to this project will be documented in this file.
 We try to follow [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and we use [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.1] - 2018-09-20
+### Added
+- An additional example to the `mcmc2densitree` helpfile
+
 ## [0.5.0] - 2018-09-20
 ### Added
 - Function `mcmc.summary` to generate a summary (mean, CIs) from an MCMC sample from BPP or MCMCTree.
