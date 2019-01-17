@@ -83,9 +83,8 @@ plot(density(calmsc$t_7humanchimp, adj=.1), xlab="Time (Ma)",
 rug(calmsc$t_7humanchimp)
 
 \dontrun{
-# if you have the coda package installed, you can get the
-# HPD intervals
-coda::HPDinterval(coda::as.mcmc(calmsc))
+# calculate posterior summary (requires CODA package)
+mcmc.summary(calmsc)
 }
 
 data(microcebus)

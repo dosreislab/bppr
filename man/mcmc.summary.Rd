@@ -24,10 +24,12 @@ Create an MCMC summary from a BPP or MCMCTree analysis
   will calculate the posterior (prior) means, the equal-tail credibility
   interval (CI), and the highest posterior (prior) density (HPD) CI. \code{prob} is
   used to calculate the CIs. For example, if \code{prob} = 95%, then you get the
-  95% CIs.
+  95% CIs. This function requires the CODA pacakge to calculate the HPD CIs.
 }
 \examples{
+\dontrun{
 mcmc.summary(hominids$mcmc[,-1])
+}
 
 }
 \author{

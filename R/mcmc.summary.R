@@ -10,13 +10,15 @@
 #'   will calculate the posterior (prior) means, the equal-tail credibility
 #'   interval (CI), and the highest posterior (prior) density (HPD) CI. \code{prob} is
 #'   used to calculate the CIs. For example, if \code{prob} = 95%, then you get the
-#'   95% CIs.
+#'   95% CIs. This function requires the CODA pacakge to calculate the HPD CIs.
 #'
 #' @return A list with elements \code{means}, \code{eq.ci}, and \code{hpd.ci}
 #'   containing the posterior (or prior) means, equal tail CI and HPD CI.
 #'
 #' @examples
+#' \dontrun{
 #' mcmc.summary(hominids$mcmc[,-1])
+#' }
 #'
 #' @author Mario dos Reis
 #'
