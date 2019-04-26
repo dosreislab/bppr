@@ -42,7 +42,7 @@ make.bfctlf <- function(beta, ctlf="bpp.ctl", betaf="beta.txt") {
     file.append(file1=newf, file2=c(ctlf, bf))
   }
   unlink(bf)
-  write(b, betaf, ncol=1)
+  write(b, betaf, ncolumns=1)
 }
 
 #' Make beta values for marginal likelihood calculation
