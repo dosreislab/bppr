@@ -6,8 +6,8 @@ and we use [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [0.5.3] - 2019-11-12
 ### Fixed
-- A bug where the Gaussian quadrature rules (`glqrules`) could not be find. This
-meant method "gauss-quad" could not be used with the `make.beta` function.
+- A bug where the Gaussian quadrature rules (`glqrules`) could not be found.
+This meant method "gauss-quad" could not be used with the `make.beta` function.
 
 ## [0.5.2] - 2019-01-17
 ### Changed
