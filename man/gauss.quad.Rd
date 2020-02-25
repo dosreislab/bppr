@@ -40,8 +40,8 @@ relaxed clocks and calibration strategies on divergence time estimation:
 Primates as a test case. \emph{bioRxiv}
 }
 \seealso{
-\code{\link{make.bfctlf}} to prepare directories and mcmctree or bpp control files
-to calculate the power posterior.
+\code{\link{make.bfctlf}} to prepare directories and mcmctree or bpp control
+files to calculate the power posterior.
 }
 \author{
 Mario dos Reis

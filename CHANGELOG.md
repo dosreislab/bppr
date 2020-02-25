@@ -4,6 +4,11 @@ Important changes to this project will be documented in this file.
 We try to follow [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and we use [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.6.0] - 2020-02-25
+### Changed
+- Function `bayes.factors` so that it calculates parameteric bootstrap of
+posterior probabilities. Updated documentation.
+
 ## [0.5.3] - 2019-11-12
 ### Fixed
 - A bug where the Gaussian quadrature rules (`glqrules`) could not be found.

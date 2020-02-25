@@ -37,8 +37,8 @@ Xie et al. (2011) Improving marginal likelihood estimation for Bayesian
 phylogenetic model selection. \emph{Systematic Biology}, 60: 150--160.
 }
 \seealso{
-\code{\link{make.bfctlf}} to prepare directories and mcmctree or bpp control files
-to calculate the power posterior.
+\code{\link{make.bfctlf}} to prepare directories and mcmctree or bpp control
+files to calculate the power posterior.
 }
 \author{
 Mario dos Reis
