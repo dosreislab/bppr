@@ -38,22 +38,18 @@ mcmc2densitree(hominids$tree, calmsc, "t_", thin=0.05, alpha=0.01)
 
 ## References
 
-If using this package, please consider citing the following whether appropriate.
+If you use the package to calibrate BPP trees to geological time (i.e if you use the `msc2time` functions), please cite
 
-The A00 analysis is described in:
+* K. Angelis and M. dos Reis (2015) [The impact of ancestral population size and incomplete lineage sorting on Bayesian estimation of species divergence times](https://doi.org/10.1093/czoolo/61.5.874). Curr. Zool., 61: 874–885.
+
+Other useful citations:
 
 * Z. Yang (2015) [The BPP program for species tree estimation and species delimitation](https://doi.org/10.1093/czoolo/61.5.854). Curr. Zool., 61: 854--865.
 
-The general random sampling procedure to recalibrate the divergence times is given in:
+* A. D. Yoder et al. (2016) [Geogenetic patterns in mouse lemurs (genus Microcebus) reveal the ghosts of Madagascar's forests past](https://doi.org/10.1073/pnas.1601081113). Proc. Nat. Acad. Sci. USA., 113: 8049–8056.
 
-* K. Angelis and M. dos Reis (2015) [The impact of ancestral population size and incomplete lineage sorting on Bayesian estimation of species divergence times](https://doi.org/10.1093/czoolo/61.5.874). Curr. Zool., 61: 874--885.
+* Rannala, B., and Z. Yang. (2017) [Efficient Bayesian species tree inference under the multispecies coalescent](https://doi.org/10.1093/sysbio/syw119). Syst. Biol., 66: 823-842.
 
-The random sampling procedure using the per-generation rate and generation time is described in:
-
-* A. D. Yoder et al. (2016) [Geogenetic patterns in mouse lemurs (genus Microcebus) reveal the ghosts of Madagascar's forests past](https://doi.org/10.1073/pnas.1601081113). Proc. Nat. Acad. Sci. USA., 113: 8049--8056.
-
-Gaussian quadrature for Bayes factors in BPP is described in:
-
-* Rannala, B., and Z. Yang. 2017. [Efficient Bayesian species tree inference under the multispecies coalescent](https://doi.org/10.1093/sysbio/syw119). Systematic Biology, 66: 823-842.
+* T. Flouri, X. Jiao, B. Rannala and Z. Yang. (2018) [Species tree inference with BPP using genomic sequences and the multispecies coalescent](https://doi.org/10.1093/molbev/msy147). Mol. Biol. and Evol., 35: 2585–2593.
 
 Other relevant citations are given in the helpfiles of the package.
