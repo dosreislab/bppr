@@ -82,6 +82,14 @@
 #' mcmc.summary(calmsc)
 #' }
 #'
+#' # Calibrate the hominid phylogeny using a shifted-lognormal fossil calibration
+#' # with minimum at 6.5 Ma for the human-chimp divergence.
+#' calmsc <- msc2time.t(mcmc=hominids$mcmc, node="7humanchimp", calf=rslnorm,
+#'   shift=6.5, sdlog=.5)
+#' plot(density(calmsc$t_7humanchimp, adj=.1), xlab="Time (Ma)",
+#'   main="Human-chimp age")
+#' rug(calmsc$t_7humanchimp)
+#'
 #' data(microcebus)
 #'
 #' # Calibrate the Microcebus phylogeny to absoluate divergence times using a
@@ -156,4 +164,3 @@ msc2time.r <- function(mcmc, u.mean, u.sd, g.mean, g.sd) {
 
   return(cbind(tmcmc, u, g, rate))
 }
-
