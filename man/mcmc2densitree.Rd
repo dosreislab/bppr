@@ -4,9 +4,19 @@
 \alias{mcmc2densitree}
 \title{Plot a densi-tree from an MCMC sample}
 \usage{
-mcmc2densitree(tree, mcmc, time.name, thin, col = "blue", alpha = 1,
-  y.offset = 0, pfract = 0.1, plot.labels = TRUE, axis = TRUE,
-  add = FALSE)
+mcmc2densitree(
+  tree,
+  mcmc,
+  time.name,
+  thin,
+  col = "blue",
+  alpha = 1,
+  y.offset = 0,
+  pfract = 0.1,
+  plot.labels = TRUE,
+  axis = TRUE,
+  add = FALSE
+)
 }
 \arguments{
 \item{tree}{an object of class phylo.}

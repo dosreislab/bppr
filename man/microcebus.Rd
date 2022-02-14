@@ -4,7 +4,8 @@
 \name{microcebus}
 \alias{microcebus}
 \title{A BPP A00 MCMC sample for a mouse lemur phylogeny}
-\format{\code{microcebus} is a list with elements \code{mcmc}, a dataframe
+\format{
+\code{microcebus} is a list with elements \code{mcmc}, a dataframe
   with 20,000 rows and 12 columns, and \code{tree}, an object of class
   \code{phylo} from the \code{ape} package.
 
@@ -13,7 +14,8 @@
   for the six species mouse lemur (\emph{Microcebus} spp) phylogeny.
 
   \code{tree} contains the phylogeny with node ages given as the posterior
-  means of the tau's in \code{mcmc}.}
+  means of the tau's in \code{mcmc}.
+}
 \source{
 A. D. Yoder, C. R. Campbell, M. B. Blanco, M. dos Reis, J. U.
   Ganzhorn, S. M. Goodman, K. E. Hunnicutt, P. A. Larsen, P. M. Kappeler, R.

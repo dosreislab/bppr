@@ -10,11 +10,9 @@
 \usage{
 dslnorm(x, shift, meanlog = 0, sdlog = 1, log = FALSE)
 
-pslnorm(q, shift, meanlog = 0, sdlog = 1, lower.tail = TRUE,
-  log.p = FALSE)
+pslnorm(q, shift, meanlog = 0, sdlog = 1, lower.tail = TRUE, log.p = FALSE)
 
-qslnorm(p, shift, meanlog = 0, sdlog = 1, lower.tail = TRUE,
-  log.p = FALSE)
+qslnorm(p, shift, meanlog = 0, sdlog = 1, lower.tail = TRUE, log.p = FALSE)
 
 rslnorm(n, shift, meanlog = 0, sdlog = 1)
 }

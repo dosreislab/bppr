@@ -4,8 +4,7 @@
 \alias{bayes.factors}
 \title{Calculate Bayes factors and posterior model probabilities}
 \usage{
-bayes.factors(..., prior = NULL, boot = TRUE, n = 1000,
-  prob = 0.95)
+bayes.factors(..., prior = NULL, boot = TRUE, n = 1000, prob = 0.95)
 }
 \arguments{
 \item{...}{list of marginal likelihood objects, see details}
