@@ -15,7 +15,8 @@ mcmc2densitree(
   pfract = 0.1,
   plot.labels = TRUE,
   axis = TRUE,
-  add = FALSE
+  add = FALSE,
+  tip.ages = NULL
 )
 }
 \arguments{
@@ -45,6 +46,10 @@ the tree and the labels. Use large values if your tip labels are long.}
 
 \item{add}{logical, if TRUE add the trees to an existing plot, otherwise
 create a new plot.}
+
+\item{tip.ages}{numeric, the ages of the tips, with the most recent tip
+having age zero, and the oldest tip having the largest age. If \code{NULL},
+tips are assumed to have all age zero.}
 }
 \description{
 Plot a densi-tree from an MCMC sample from a BPP or MCMCTree analysis

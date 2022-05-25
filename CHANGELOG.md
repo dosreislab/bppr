@@ -4,6 +4,11 @@ Important changes to this project will be documented in this file.
 We try to follow [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and we use [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.6.2] - 2022-05-25
+### Added
+- Argument `tip.ages` to `mcmc2densitree`. This allows plotting trees with 
+sequences that have different sampling times (such as viruses).
+
 ## [0.6.1] - 2020-11-29
 ### Added
 - An additional example to the `msc2time` functions documentation using the

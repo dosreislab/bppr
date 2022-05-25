@@ -18,6 +18,9 @@
 #' @param axis, logical, whether to plot the x axis.
 #' @param add logical, if TRUE add the trees to an existing plot, otherwise
 #'   create a new plot.
+#' @param tip.ages numeric, the ages of the tips, with the most recent tip
+#'   having age zero, and the oldest tip having the largest age. If \code{NULL},
+#'   tips are assumed to have all age zero.
 #'
 #' @details The function will reduce the MCMC sample to \code{dim(mcmc)[1] *
 #'   thin} observations. Then the node ages in each observarion are used to plot
@@ -47,9 +50,9 @@
 #' @export
 # FIXME: I'm very slow
 mcmc2densitree <- function(tree, mcmc, time.name, thin, col="blue", alpha=1, y.offset=0,
-                           pfract = 0.1, plot.labels = TRUE, axis=TRUE, add=FALSE) {
+                           pfract = 0.1, plot.labels = TRUE, axis=TRUE, add=FALSE, tip.ages=NULL) {
   ns <- tree$Nnode + 1
-  tip.ages <- rep(0, ns)
+  if (is.null(tip.ages)) tip.ages <- rep(0, ns)
   ti <- grep(time.name, names(mcmc))
   n <- dim(mcmc)[1]; N <- n * thin
   ii <- floor(seq(from=1, to=n, length.out = N))
