@@ -35,14 +35,14 @@ analysis.}
 
 \item{y.offset}{numeric, the vertical offset for plotting the tree.}
 
-\item{pfract, }{numeric, how much of the plotting space to used for plotting
+\item{pfract}{numeric, how much of the plotting space to used for plotting
 the tip labels. If \code{pfrac = 1}, the same amount of space is used for
 the tree and the labels. Use large values if your tip labels are long.}
 
-\item{plot.labels, }{logical, whether to plot the tip labels. Ignored if
+\item{plot.labels}{logical, whether to plot the tip labels. Ignored if
 \code{add = TRUE}.}
 
-\item{axis, }{logical, whether to plot the x axis.}
+\item{axis}{logical, whether to plot the x axis.}
 
 \item{add}{logical, if TRUE add the trees to an existing plot, otherwise
 create a new plot.}

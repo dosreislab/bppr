@@ -10,12 +10,12 @@
 #' @param col character, the color for branches.
 #' @param alpha numeric, between 0 and 1, the branch color transparency.
 #' @param y.offset numeric, the vertical offset for plotting the tree.
-#' @param pfract, numeric, how much of the plotting space to used for plotting
+#' @param pfract numeric, how much of the plotting space to used for plotting
 #'   the tip labels. If \code{pfrac = 1}, the same amount of space is used for
 #'   the tree and the labels. Use large values if your tip labels are long.
-#' @param plot.labels, logical, whether to plot the tip labels. Ignored if
+#' @param plot.labels logical, whether to plot the tip labels. Ignored if
 #'   \code{add = TRUE}.
-#' @param axis, logical, whether to plot the x axis.
+#' @param axis logical, whether to plot the x axis.
 #' @param add logical, if TRUE add the trees to an existing plot, otherwise
 #'   create a new plot.
 #' @param tip.ages numeric, the ages of the tips, with the most recent tip
