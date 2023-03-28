@@ -4,6 +4,11 @@ Important changes to this project will be documented in this file.
 We try to follow [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and we use [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.6.3] - 2023-03-28
+### Fixed
+- Function `mcmc2densitree` so that tip labels are correctly positioned in the
+plot when extinct taxa are present (set using tip.ages).
+
 ## [0.6.2] - 2022-05-25
 ### Added
 - Argument `tip.ages` to `mcmc2densitree`. This allows plotting trees with 

@@ -63,7 +63,7 @@ mcmc2densitree <- function(tree, mcmc, time.name, thin, col="blue", alpha=1, y.o
     xend <- max(mcmc[ii,ti])
     xmin <- - xend * pfract
     plot(rep(0, 2*ns - 1), ycoo, xlim=c(xend, xmin), ylim=c(0, max(ycoo)), ty='n', axes=FALSE, xlab=NA, ylab=NA)
-    if (plot.labels) text(x=0, y=ycoo[1:ns], tree$tip.label, pos=4)
+    if (plot.labels) text(x=tip.ages, y=ycoo[1:ns], tree$tip.label, pos=4)
     if (axis) axis(1)
   }
 
