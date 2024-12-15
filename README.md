@@ -43,6 +43,8 @@ mcmc2densitree(hominids$tree, calmsc, "t_", thin=0.05, alpha=0.01)
 
 If you use the package to calibrate BPP trees to geological time (i.e if you use the `msc2time` functions), please cite
 
+* C. R. Campbell, G. P. Tiley, J. W. Poelstra, K. E. Hunnicutt, P. A. Larsen, H. Lee, J. L. Thorne, M. dos Reis, and A. D. Yoder. (2021) [Pedigree-based and phylogenetic methods support surprising patterns of mutation rate and spectrum in the gray mouse lemur](https://doi.org/10.1038/s41437-021-00446-5). Heredity, 127: 233–244. 
+
 * K. Angelis and M. dos Reis (2015) [The impact of ancestral population size and incomplete lineage sorting on Bayesian estimation of species divergence times](https://doi.org/10.1093/czoolo/61.5.874). Curr. Zool., 61: 874–885.
 
 Other useful citations:
