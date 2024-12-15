@@ -1,6 +1,6 @@
 # bppr: a helper R package for BPP
 
-> [! WARNING]
+> [!WARNING]
 > The bppr package has been deprecated as of Nov 2024. This simply means that the package is no longer mantained or updated. You can still download, install, and use it. All bppr functionally has been migrated to the mcmc3r package (https://github.com/dosreislab/mcmc3r). Please refer to mcmc3r for the latest version of all functions.
 
 Currently the package is useful for
