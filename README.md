@@ -56,7 +56,9 @@ the `msc2time` functions), please cite
 
 * C. R. Campbell, G. P. Tiley, J. W. Poelstra, K. E. Hunnicutt, P. A. Larsen, H. Lee, J. L. Thorne, M. dos Reis, and A. D. Yoder. (2021) [Pedigree-based and phylogenetic methods support surprising patterns of mutation rate and spectrum in the gray mouse lemur](https://doi.org/10.1038/s41437-021-00446-5). Heredity, 127: 233–244.
 * K. Angelis and M. dos Reis (2015) [The impact of ancestral population size and incomplete lineage sorting on Bayesian estimation of species divergence times](https://doi.org/10.1093/czoolo/61.5.874). Curr. Zool., 61: 874–885.
+
 Other useful citations:
+
 * Z. Yang (2015) [The BPP program for species tree estimation and species delimitation](https://doi.org/10.1093/czoolo/61.5.854). Curr. Zool., 61: 854--865.
 * A. D. Yoder et al. (2016) [Geogenetic patterns in mouse lemurs (genus Microcebus) reveal the ghosts of Madagascar's forests past](https://doi.org/10.1073/pnas.1601081113). Proc. Nat. Acad. Sci. USA., 113: 8049–8056.
 * Rannala, B., and Z. Yang. (2017) [Efficient Bayesian species tree inference under the multispecies coalescent](https://doi.org/10.1093/sysbio/syw119). Syst. Biol., 66: 823-842.
