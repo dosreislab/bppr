@@ -44,6 +44,12 @@
 #'   mouse lemur phylogeny using a prior on the rate. The BPP A00 analysis is
 #'   described in Yang (2015).
 #'
+#'   Note that setting \code{g.mean = 1} and \code{g.sd = 0} allows the use of a
+#'   rate calibration in geological time: In this case set \code{u.mean} to be
+#'   the desire rate in calendar time units, such as substitutions per site per
+#'   year or per millions of years, with \code{u.sd} set to give the desired
+#'   standard deviation in the calendar time unit.
+#'
 #' @return A data frame with a posterior sample of the calibrated times and
 #'   molecular rate, and additionally, in the case of \code{msc2time.r}, the
 #'   population sizes.
@@ -52,6 +58,11 @@
 #' @references K. Angelis and M. dos Reis (2015) \emph{The impact of ancestral
 #' population size and incomplete lineage sorting on Bayesian estimation of
 #' species divergence times.} Curr. Zool., 61: 874--885.
+#'
+#' C. R. Campbell, G. P. Tiley, J. W. Poelstra, K. E. Hunnicutt, P. A. Larsen,
+#' H.-J. Lee, J. L. Thorne, M. dos Reis, and A. D. Yoder. (2021)
+#' \emph{Pedigree-based and phylogenetic methods support surprising patterns of
+#' mutation rate and spectrum in the gray mouse lemur} Heredity, 127: 233–244.
 #'
 #' Z. Yang (2015) \emph{The BPP program for species tree estimation and species
 #' delimitation.} Curr. Zool., 61: 854--865.
@@ -137,15 +148,23 @@ msc2time.r <- function(mcmc, u.mean, u.sd, g.mean, g.sd) {
   ti <- grep("tau_", names(mcmc)) # find the unscaled times (tau's) in data frame
   ni <- grep("theta_", names(mcmc)) # find mutation-rate scaled population sizes in data frame
 
-  # obtain alpha and beta re-parameterizations for the gamma
+  # de novo rate: obtain alpha and beta re-parameterizations for the gamma and
+  # obtain random samples:
   u.a <- u.mean^2 / u.sd^2
   u.b <- u.mean / u.sd^2
-  g.a <- g.mean^2 / g.sd^2
-  g.b <- g.mean / g.sd^2
-
-  # obtain random samples of u and g from gamma distribution
   u <- rgamma(n, u.a, u.b)
-  g <- rgamma(n, g.a, g.b)
+
+  # generation time: obtain random samples of u and g from gamma distribution
+  # and generate sample sample, unless g.sd = 0
+  if (g.sd == 0) {
+    g <- rep(g.mean, n)
+  }
+  else {
+    g.a <- g.mean^2 / g.sd^2
+    g.b <- g.mean / g.sd^2
+    g <- rgamma(n, g.a, g.b)
+  }
+
   rate <- u / g
 
   # obtain calibrated times and population sizes

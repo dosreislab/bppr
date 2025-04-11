@@ -68,6 +68,12 @@ absolute time using a fossil calibration or a prior on the molecular rate.
   these functions. Yoder et al. (2016) gives an example of calibrating a
   mouse lemur phylogeny using a prior on the rate. The BPP A00 analysis is
   described in Yang (2015).
+
+  Note that setting \code{g.mean = 1} and \code{g.sd = 0} allows the use of a
+  rate calibration in geological time: In this case set \code{u.mean} to be
+  the desire rate in calendar time units, such as substitutions per site per
+  year or per millions of years, with \code{u.sd} set to give the desired
+  standard deviation in the calendar time unit.
 }
 \examples{
 data(hominids)
@@ -118,6 +124,11 @@ rug(calmsc$Ne_7OLMXRB / 1e3)
 K. Angelis and M. dos Reis (2015) \emph{The impact of ancestral
 population size and incomplete lineage sorting on Bayesian estimation of
 species divergence times.} Curr. Zool., 61: 874--885.
+
+C. R. Campbell, G. P. Tiley, J. W. Poelstra, K. E. Hunnicutt, P. A. Larsen,
+H.-J. Lee, J. L. Thorne, M. dos Reis, and A. D. Yoder. (2021)
+\emph{Pedigree-based and phylogenetic methods support surprising patterns of
+mutation rate and spectrum in the gray mouse lemur} Heredity, 127: 233–244.
 
 Z. Yang (2015) \emph{The BPP program for species tree estimation and species
 delimitation.} Curr. Zool., 61: 854--865.
