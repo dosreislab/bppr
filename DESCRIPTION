@@ -1,7 +1,7 @@
 Package: bppr
 Type: Package
 Title: An R package for BPP
-Version: 0.6.3
+Version: 0.6.4
 Author: Mario dos Reis
 Maintainer: Mario dos Reis <mariodosreis@gmail.com>
 Description: Functions to work with the multi-species coalescent program BPP,

@@ -1,8 +1,10 @@
-# Changelog
+# News
 Important changes to this project will be documented in this file.
 
-We try to follow [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and we use [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+## [0.6.4] - 2025-04-11
+### Changed
+- Function `mcmc2time.r` so that a calendar time rate can be used to calibrate
+the tree, by setting `g.mean=1` and `g.sd=0`
 
 ## [0.6.3] - 2023-03-28
 ### Fixed

@@ -154,8 +154,8 @@ msc2time.r <- function(mcmc, u.mean, u.sd, g.mean, g.sd) {
   u.b <- u.mean / u.sd^2
   u <- rgamma(n, u.a, u.b)
 
-  # generation time: obtain random samples of u and g from gamma distribution
-  # and generate sample sample, unless g.sd = 0
+  # generation time: obtain alpha and beta re-parameterizations for the gamma
+  # and generate sample, unless g.sd = 0
   if (g.sd == 0) {
     g <- rep(g.mean, n)
   }
